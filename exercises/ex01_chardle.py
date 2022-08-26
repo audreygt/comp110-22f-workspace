@@ -6,9 +6,16 @@ typed_word: str = input("Enter a 5-character word: ")
 if len(typed_word) > 5:
     print("Error: Word must contain 5 characters")
     exit()
+if len(typed_word) < 5:
+    print("Error: Word must contain 5 characters")
+    exit()
+
 typed_character: str = input("Enter a single character: ")
 print("Searching for " + typed_character + " in " + typed_word)
 if len(typed_character) > 1:
+    print("Error: Character must be a single character.")
+    exit()
+if len(typed_character) < 1:
     print("Error: Character must be a single character.")
     exit()
 
@@ -38,10 +45,10 @@ else:
             print("2 instances of " + typed_character + " found in " + typed_word)
         else:
             if instances == 3: 
-                print("3 instance of " + typed_character + " found in " + typed_word)
+                print("3 instances of " + typed_character + " found in " + typed_word)
             else:
                 if instances == 4: 
-                    print("3 instance of " + typed_character + " found in " + typed_word)
+                    print("4 instances of " + typed_character + " found in " + typed_word)
                 else: 
                     if instances == 5: 
-                        print("5 instance of " + typed_character + " found in " + typed_word)
+                        print("5 instances of " + typed_character + " found in " + typed_word)
