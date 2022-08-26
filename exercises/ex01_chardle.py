@@ -1,7 +1,7 @@
 """EX01 - Chardle - A cute step toward Wordle."""
 __author__ = "730545277"
 
-number: int = 0
+instances: int = 0
 typed_word: str = input("Enter a 5-character word: ")
 if len(typed_word) > 5:
     print("Error: Word must contain 5 characters")
@@ -14,34 +14,34 @@ if len(typed_character) > 1:
 
 if typed_word[0] == typed_character:
     print(typed_character + " found at index 0")
-    number = number + 1
+    instances = instances + 1
 if typed_word[1] == typed_character: 
     print(typed_character + " found at index 1")
-    number = number + 1
+    instances = instances + 1
 if typed_word[2] == typed_character:
     print(typed_character + " found in index 2")
-    number = number + 1
+    instances = instances + 1
 if typed_word[3] == typed_character:
     print(typed_character + " found in index 3")
-    number = number + 1
+    instances = instances + 1
 if typed_word[4] == typed_character:
     print(typed_character + " found in index 4")
-    number = number + 1
+    instances = instances + 1
 
-if number == 0:
+if instances == 0:
     print("No instances of " + typed_character + " found in " + typed_word)
 else: 
-    if number == 1: 
+    if instances == 1: 
         print("1 instance of " + typed_character + " found in " + typed_word)
     else:
-        if number == 2: 
+        if instances == 2: 
             print("2 instances of " + typed_character + " found in " + typed_word)
         else:
-            if number == 3: 
+            if instances == 3: 
                 print("3 instance of " + typed_character + " found in " + typed_word)
             else:
-                if number == 4: 
+                if instances == 4: 
                     print("3 instance of " + typed_character + " found in " + typed_word)
                 else: 
-                    if number == 5: 
+                    if instances == 5: 
                         print("5 instance of " + typed_character + " found in " + typed_word)
