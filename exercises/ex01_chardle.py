@@ -15,6 +15,7 @@ print("Searching for " + typed_character + " in " + typed_word)
 if len(typed_character) > 1:
     print("Error: Character must be a single character.")
     exit()
+
 if len(typed_character) < 1:
     print("Error: Character must be a single character.")
     exit()
