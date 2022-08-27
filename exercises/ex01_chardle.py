@@ -15,6 +15,9 @@ print("Searching for " + typed_character + " in " + typed_word)
 if len(typed_character) > 1:
     print("Error: Character must be a single character.")
     exit()
+if len(typed_character) < 1: 
+    print("Error: Character must be a single character.")
+    exit()
 
 if typed_word[0] == typed_character:
     print(typed_character + " found at index 0")
@@ -23,13 +26,13 @@ if typed_word[1] == typed_character:
     print(typed_character + " found at index 1")
     instances = instances + 1
 if typed_word[2] == typed_character:
-    print(typed_character + " found in index 2")
+    print(typed_character + " found at index 2")
     instances = instances + 1
 if typed_word[3] == typed_character:
-    print(typed_character + " found in index 3")
+    print(typed_character + " found at index 3")
     instances = instances + 1
 if typed_word[4] == typed_character:
-    print(typed_character + " found in index 4")
+    print(typed_character + " found at index 4")
     instances = instances + 1
 
 if instances == 0:
