@@ -11,13 +11,13 @@ if len(typed_word) < 5:
     exit()
 
 typed_character: str = input("Enter a single character: ")
-print("Searching for " + typed_character + " in " + typed_word)
 if len(typed_character) > 1:
     print("Error: Character must be a single character.")
     exit()
 if len(typed_character) < 1: 
     print("Error: Character must be a single character.")
     exit()
+print("Searching for " + typed_character + " in " + typed_word)
 
 if typed_word[0] == typed_character:
     print(typed_character + " found at index 0")
