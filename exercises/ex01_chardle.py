@@ -50,6 +50,3 @@ else:
             else:
                 if instances == 4: 
                     print("4 instances of " + typed_character + " found in " + typed_word)
-                else: 
-                    if instances == 5: 
-                        print("5 instances of " + typed_character + " found in " + typed_word)
