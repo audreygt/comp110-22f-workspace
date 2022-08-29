@@ -16,4 +16,3 @@ else:
         print("Try a higher number.")
 
 print("Game over.")
-print("Audrey may switch her major if these FAFSA people make her lose her mind.")
