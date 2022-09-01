@@ -16,9 +16,11 @@ YELLOW_BOX: str = "\U0001F7E8"
 while len(guessed_word) != character_number:
     guessed_word = input("That was not 6 letters! Try again: ")
 
-if len(guessed_word) == len(secret_word) and guessed_word != secret_word:
+if len(guessed_word) == len(secret_word) and guessed_word[0] != secret_word[0]:
     while index < character_number:
-        print("Not quite. Play again soon!")
+        index = index + 1
+        print("\U00002B1C")
+    print("Not quite. Play again soon!")
 
 if guessed_word == secret_word:
     while index < character_number:
