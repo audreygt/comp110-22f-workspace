@@ -2,7 +2,7 @@
 
 __author__ = "730545277"
 
-secret_word: str = "python"
+secret_word: str = "amazing"
 character_number = len(secret_word)
 guessed_word: str = input("What is your 6-letter guess? ")
 index: int = 0
