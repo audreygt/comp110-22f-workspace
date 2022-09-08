@@ -2,7 +2,7 @@
 
 __author__ = "730545277"
 
-secret_word: str = "python"
+secret_word: str = "coffeecake"
 character_number = len(secret_word)
 guessed_word: str = input(f"What is your {character_number}-letter guess? ")
 index: int = 0
@@ -14,7 +14,7 @@ GREEN_BOX: str = "\U0001F7E9"
 YELLOW_BOX: str = "\U0001F7E8"
 
 while len(guessed_word) != character_number:
-    guessed_word = input("That was not 6 letters! Try again: ")
+    guessed_word = input(f"That was not {character_number} letters! Try again: ")
 
 if len(guessed_word) == len(secret_word) and guessed_word != secret_word:
     while index < character_number:
