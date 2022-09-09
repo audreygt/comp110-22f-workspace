@@ -8,6 +8,7 @@ guessed_word: str = input(f"What is your {character_number}-letter guess? ")
 index: int = 0
 checking: int = 0
 response_answer: str = ""
+running_times: int = len(secret_word)
 
 WHITE_BOX: str = "\U00002B1C"
 GREEN_BOX: str = "\U0001F7E9"
