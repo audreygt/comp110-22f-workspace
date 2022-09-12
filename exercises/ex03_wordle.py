@@ -3,12 +3,11 @@
 __author__ = "730545277"
 
 secret_word: str = "codes"
-emojis: str = ""
+secret_length: len(secret_word)
 def contains_char(guessed_word: str, guessed_character: str) -> bool:
     """finding the character in the word"""
     assert len(guessed_character) == 1
     index: int = 0
-
     while index < len(guessed_word):
         if guessed_character == guessed_word[index]:
             return True
@@ -19,24 +18,41 @@ def contains_char(guessed_word: str, guessed_character: str) -> bool:
 WHITE_BOX: str = "\U00002B1C"
 GREEN_BOX: str = "\U0001F7E9"
 YELLOW_BOX: str = "\U0001F7E8"
-index: int = 0
-checking: int = 0
-right_character: bool = False
-emoji_answer: str = ""
 
 def emojified(guessed_word: str, secret_word: str) -> str:
+    index: int = 0
+    contains: bool = True 
+    emoji_answer: str = ""
     """testing for the indexes using colored boxes"""
     assert len(guessed_word) == len(secret_word)
-    contains_char(guessed_word, secret_word)
-    while contains_char is True:
-        emoji_answer += GREEN_BOX
-    while contains_char is False and checking < len(guessed_word):
-        if secret_word[checking] == guessed_word[index]:
-            right_character = True 
-            checking += 1
-        if right_character is not True:
-            emoji_answer += WHITE_BOX
-        else:
-            emoji_answer += YELLOW_BOX
-    return emoji_answer
+    contains_char(guessed_word)
+    while index < len(guessed_word):
+        if guessed_word[index] == secret_word[index]:
+            emoji_answer += GREEN_BOX
+        if contains == contains_char(secret_word, guessed_word[index]):
+            emoji_answer + YELLOW_BOX
+        else: 
+            emoji_answer + WHITE_BOX
+        index += 1 
+    return emoji_answer 
+
+def input_guess(expected_length: int) -> str:
+    guessed_word: input(f"Enter a {secret_length} character word: ")
+    expected_length: int = len(guessed_word)
+    while expected_length != secret_length:
+       guessed_word: input(f"That wasn't {secret_length} chars! Try again: ")
+    if expected_length == secret_length:
+        return guessed_word
+    emojified(guessed_word)
+
+def main() -> None:
+    "The entry point of the program and main game"
+    play_number: int = 0
+    limit_number: int = 6
+    print("===Turn {play_number}/6 ===")
+    input_guess(secret_length)
+    while play_number <= limit_number: 
+        
+        play_number += 1
+    print("X/6 - Sorry, try again tomorrow.")
 
