@@ -45,8 +45,7 @@ def input_guess(expected_length: int) -> str:
     expected_length: len(guessed_word)
     while expected_length != secret_length:
        guessed_word = (f"That wasn't {secret_length} chars! Try again: ")
-    if expected_length == secret_length:
-        return str(guessed_word)
+    return str(guessed_word)
 
 def main() -> None:
     "The entry point of the program and main game."""
@@ -67,5 +66,4 @@ def main() -> None:
     return None
 
 if __name__ == "__main__":
-    secret_length = len(secret_word)
     main()
