@@ -2,9 +2,6 @@
 
 __author__ = "730545277"
 
-secret_word: str = "codes"
-secret_length: int = len(secret_word)
-
 def contains_char(guessed_word: str, guessed_character: str) -> bool:
     """Finding the character in the word."""
     assert len(guessed_character) == 1
@@ -22,11 +19,10 @@ YELLOW_BOX: str = "\U0001F7E8"
 
 def emojified(guessed_word: str, secret_word: str) -> str:
     """Providing hints for guessed word."""
+    assert len(guessed_word) == len(secret_word)
     index: int = 0
     contains: bool = True 
     emoji_answer: str = ""
-    """testing for the indexes using colored boxes."""
-    assert len(guessed_word) == len(secret_word)
     guessed_character = guessed_word[index]
     contains_char(guessed_word, guessed_character)
     while index < len(guessed_word):
@@ -41,6 +37,8 @@ def emojified(guessed_word: str, secret_word: str) -> str:
 
 def input_guess(expected_length: int) -> str:
     """Testing the length of guessed word."""
+    secret_word: str = "codes"
+    secret_length: int = len(secret_word)
     guessed_word = input(f"Enter a {secret_length} character word: ")
     expected_length: len(guessed_word)
     while expected_length != secret_length:
@@ -49,6 +47,8 @@ def input_guess(expected_length: int) -> str:
 
 def main() -> None:
     "The entry point of the program and main game."""
+    secret_word: str = "codes"
+    secret_length: str = len(secret_word)
     play_number: int = 1
     limit_number: int = 6
     playing: bool = True
@@ -66,4 +66,6 @@ def main() -> None:
     return None
 
 if __name__ == "__main__":
+    secret_word: str = "codes"
+    secret_length: str = len(secret_word)
     main()
