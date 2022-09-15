@@ -3,28 +3,39 @@
 __author__ = "730545277"
 
 from ctypes.wintypes import LARGE_INTEGER
-from random import randint 
 
 
-def all(input: list[int], check: int) -> bool:
+def all(sequence: list[int], check: int) -> bool:
     "Checking for all numbers in a sequence."
-    if input == list() or check != input:
-        return False
-    else: 
+    index: int = 0
+    checking: bool = True
+    while index <= len(sequence) and checking is True:
+        while sequence != list() and check == sequence[index]:
+            index += 1
         return True
+    while sequence == list() and check != sequence[index]:
+        index += 1
+        checking = False
+        return False
 
 
 def max(input: list[int]) -> int:
     """Checking for the largest number."""
     if len(input) == 0:
         raise ValueError("max() arg is an empty list.")
-    if len(input) <= 3:
-        return LARGE_INTEGER
+    else:
+        input.sort
+        return (len(input) -1)
 
 
 def is_equal(input: list[int], check: list[int]) -> bool:
     """Checking for equal input number sequence."""
-    if input == check:
-        return True 
+    index = 0
+    if input[index] == check[index]:
+        index +=1 
+        if input[index] == check[index]:
+            index += 1
+            if input[index] == check[index]:
+                return True 
     else: 
         return False 
