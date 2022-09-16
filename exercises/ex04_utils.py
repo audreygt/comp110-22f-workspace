@@ -1,3 +1,4 @@
+
 """Coding functions and using lists."""
 
 __author__ = "730545277"
@@ -6,6 +7,8 @@ __author__ = "730545277"
 def all(sequence: list[int], check: int) -> bool:
     """Checking for all numbers in a sequence."""
     index: int = 0
+    if len(sequence) == 0:
+        return False 
     while index < len(sequence):
         if len(sequence) != 0 and check == sequence[index]:
             index += 1
