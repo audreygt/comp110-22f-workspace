@@ -19,18 +19,20 @@ def all(sequence: list[int], check: int) -> bool:
 
 def max(input: list[int]) -> int:
     """Checking for the largest number."""
-    maximum: int = 0
     index = 0 
+    maximum: int = input[0]
     if len(input) == 0:
         raise ValueError("max() arg is an empty list.")
     else:
         while index < len(input):
-            if abs(input[index]) > maximum:
+            if input[index] > maximum:
                 maximum = input[index]
-            index += 1
+                index += 1
+            else: 
+                maximum = input[0]
         return maximum
 
-
+print(max([-3, -1, -5]))
 def is_equal(input: list[int], check: list[int]) -> bool:
     """Checking for equal input number sequence."""
     index = 0
