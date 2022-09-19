@@ -39,7 +39,7 @@ def emojified(guessed_word: str, secret_word: str) -> str:
 
 def input_guess(length_expected: int) -> str:
     """Testing the length of guessed word."""
-    secret_word: str = "codes"
+    secret_word: str = "simoncelli"
     guessed_word: str = input(f"Enter a {len(secret_word)} character word: ")
     expected_length: int = len(guessed_word)
     while expected_length != len(secret_word):
@@ -50,12 +50,12 @@ def input_guess(length_expected: int) -> str:
 
 def main() -> None:
     """The entry point of the program and main game."""
-    secret_word: str = "codes"
+    secret_word: str = "simoncelli"
     play_number: int = 1
-    limit_number: int = 6
+    limit_number: int = 20
     playing: bool = True
     while play_number <= limit_number and playing is True: 
-        print(f"=== Turn {play_number}/6 ===")
+        print(f"=== Turn {play_number}/20 ===")
         guessed_word = input_guess(len(secret_word))
         print(emojified(guessed_word, secret_word))
         if guessed_word == secret_word: 
@@ -69,5 +69,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    secret_word: str = "codes"
+    secret_word: str = "simoncelli"
     main()
