@@ -29,18 +29,21 @@ def concat(list_1: list[int], list_2: list[int]) -> list[int]:
     return all_list 
 
 
-def sub(list: list[int], start_index: int, end_index: int) -> list[int]:
+def sub(input_list: list[int], start_index: int, end_index: int) -> list[int]:
     """Returns a list of integers between given indexes."""
-    subset_list: list[int] = ()
-    index: int = start_index + 1
-    
-    if start_index > len(list):
-        return []
-    if len(list) == 0:
+    subset_list: input_list[int] = []
+
+    if start_index >= len(input_list) or len(input_list) == 0:
         return []
     if end_index < 0:
         return []
-    while list[0] < start_index < len(list) and list[0] < end_index < len(list):
-        subset_list.append(list[index])
+    
+    if start_index < 0:
+        start_index = 0
+    if end_index >= len(input_list):
+        end_index = len(input_list) - 1
+
+    while start_index < end_index:
+        subset_list.append(input_list[start_index])
         start_index += 1
-    return subset_list
+    return subset_list 
