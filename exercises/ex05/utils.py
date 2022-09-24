@@ -41,7 +41,7 @@ def sub(input_list: list[int], start_index: int, end_index: int) -> list[int]:
     if start_index < 0:
         start_index = 0
     if end_index >= len(input_list):
-        end_index = len(input_list) - 1
+        end_index = len(input_list)
 
     while start_index < end_index:
         subset_list.append(input_list[start_index])

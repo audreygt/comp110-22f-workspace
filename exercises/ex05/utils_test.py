@@ -68,7 +68,7 @@ def test_sub_2() -> None:
     in_list: list[int] = [10, 20, 30, 40]
     start_index: int = 0
     end_index: int = 4
-    assert sub(in_list, start_index, end_index) == [10, 20, 30]
+    assert sub(in_list, start_index, end_index) == [10, 20, 30, 40]
 
 
 def test_sub_3() -> None: 
@@ -77,4 +77,4 @@ def test_sub_3() -> None:
     in_list: list[int] = [10, 20, 30, 40, 50]
     start_index: int = 0
     end_index: int = 7
-    assert sub(in_list, start_index, end_index) == [10, 20, 30, 40]
+    assert sub(in_list, start_index, end_index) == [10, 20, 30, 40, 50]
