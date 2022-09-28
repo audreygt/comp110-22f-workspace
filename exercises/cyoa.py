@@ -3,18 +3,49 @@
 __author__ = "730545277"
 
 from random import randint 
-playing_points: int = 0
+points: int = 0
 FIXING_DEVICE: str = "\U0001F4BB"
-player_name: str = input("What is your name? ")
+player: str = "name"
+playing_turns: int = 0
+
+
+def all_or_nothing(risky_points: int) -> int:
+    """Allowing the player to risk all of their money by playing the lottery."""
+    gambling_computer: int = randint(0, 2)
+    if gambling_computer == 0:
+        risky_points -= risky_points 
+    if gambling_computer == 1:
+        risky_points += 10,0000
+    if gambling_computer == 2:
+        risky_points **= 10
+    points += risky_points 
+    print(f"You have reached the end of the game, here are your total amount of money: {points}")
+
 
 def main() -> None:
     """Moving the player ownwards."""
-    greet() 
+    if playing_turns == 0:
+        greet() 
+        playing_turns = 1
+    else: 
+        print(f"So far, here are your points: {points}")
+        game_choice: str = input("Would you like to quit the game, risk your money, or redo the game?\nPlease type 1 to quit, 2 to continue, 3 to redo the game.\nChoosing to risk you money allows the computer to determine what the machine should do based on the amount of money you have provided.\n")
+        if game_choice == "1":
+            print(f"Thank you for playing, here are your total number of points: {points}")
+        if game_choice == "2":
+            risky_points: int = input("How many of your points gathered so far would you like to risk?\n")
+            all_or_nothing(risky_points)
+        if game_choice == "3":
+            global points 
+            points = 0
+            repairing_in_progress(points)
 
 
 def greet() -> None:
     """Introducing the player to the game."""
-    print(f"Hello {player_name}, this is a game called Tech Repair\U000000A9\U000000AE\U00002122.\nYou currently are working as a tech repair person in the UNC shop.\nTo fix the device and add accessories for the device to work, you must answer questions correctly relating to COMP 110 material.")
+    global player
+    player = input("What is your name? ")
+    print(f"Hello {player}, this is a game called Tech Repair\U000000A9\U000000AE\U00002122.\nYou currently are working as a tech repair person in the UNC shop.\nTo fix the device and add accessories for the device to work, you must answer questions correctly relating to COMP 110 material.")
     input("Press enter.")
     print("You must answer a certain number of questions to find the right tools and accessories to fix and pair with the device in progress.\nEach question will show you the object you will be answering for.")
     input("Press enter.")
@@ -22,7 +53,7 @@ def greet() -> None:
     input("Press enter.")
     print(f"This is the device you will be fixing: {FIXING_DEVICE}\U0001FAAB , a broken computer.")
     input("Press enter when you are ready to start.\n")
-    repairing_in_progress(playing_points) 
+    repairing_in_progress(points) 
 
 
 def repairing_in_progress(playing_points: int) -> str:
@@ -111,9 +142,10 @@ def repairing_in_progress(playing_points: int) -> str:
         repair_progress += "\U0001F5B1"
         print(f"{CORRECT} Correct! You now have {playing_points}/10 points and {repair_progress}  to continue fixing {FIXING_DEVICE}.\nOn to question 10.\n")
 
-    print(f"The {FIXING_DEVICE} is now completed. The customer\U0001F468\U0001F469 will now come back to recieve their laptop and rate your work.\n{player_name}, please be prepapred to serve the {FIXING_DEVICE} to the customer.\nLet's move onto the next step, your shift is almost over.\n")
+    print(f"The {FIXING_DEVICE} is now completed. The customer\U0001F468\U0001F469 will now come back to recieve their laptop and rate your work.\n{player}, please be prepapred to serve the {FIXING_DEVICE} to the customer.\nLet's move onto the next step, your shift is almost over.\n")
     input("Press enter.")
     customer_checking(playing_points)
+    return playing_points
 
 
 def customer_checking(playing_points: int) -> int:
@@ -136,18 +168,18 @@ def customer_checking(playing_points: int) -> int:
             print(f"{customer_names[customer_index]}\U0001F636 rated your work on {FIXING_DEVICE} 3 stars. They had a mediocre experience and left a surprise tip: \U0001F4B8{playing_points}")
             print("Here is the customer's comment: \U0001F4AC ""You must have an NC Stink education in computer science but pass the {FIXING_DEVICE} to the next customer.""")
         if customer_rating == 4:
-            playing_points *= 7
+            points *= 7
             print(f"{customer_names[customer_index]}\U0001F609 rated your work on {FIXING_DEVICE} 4 stars. They had a great experience and provided you with a fat tip: \U0001F4B8{playing_points}")
             print(f"Here is the customer's comment: \U0001F4AC ""This worker must have attended the computer science program at UNC but may have slept in some of the lectures.\n Pass the {FIXING_DEVICE} to the next customer.""")
         print(f"Maybe another customer may pick up this {FIXING_DEVICE} instead of the previous customer until 3 customers have rated your work.")
         customer_rating = randint(1, 5)
         turn_number += 1
         if customer_rating == 5:
-            playing_points **= 3
+            points **= 3
             print(f"{customer_names[customer_index]}\U0001F911 rated your work on {FIXING_DEVICE} 5 stars. They had a terrific experience and wish you retirement: \U0001F4B8{playing_points}")
             print("Here is the customer's comment: \U0001F4AC ""I can definitely tell you were taught by Kris Jordan in the comptuer science program at UNC-CH.\nTke my social security nunmber: 432-67-925""")
     print("Your points are down below:")
-    return playing_points 
+    return points 
         
     
 if __name__ == "__main__":
