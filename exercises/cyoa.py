@@ -26,7 +26,7 @@ def repairing_in_progress(str) -> str:
         playing_points += 1
         print(f"You now have {playing_points}/10 points.")
         repair_progress += "\unicode"
-        print("Correct! You now have (a) {repair_progress} to start fixing {FIXING_DEVICE}.\On to question 3.")
+        print("Correct! You now have (a) {repair_progress} to continue fixing {FIXING_DEVICE}.\On to question 3.")
 
     question_3: input = str("Answering question for: \unicode.\Which of the following boolean expressions results in a value of True? Please type the corresponding letter to the answer.\A: 1 > 0\B: 1 != 2\C: 4 + 3 * 6 < 50\D: True == True\ ")
     while question_3 != "D":
@@ -35,7 +35,7 @@ def repairing_in_progress(str) -> str:
         playing_points += 1
         print(f"You now have {playing_points}/10 points.")
         repair_progress += "\unicode"
-        print("Correct! You now have (a) {repair_progress} to start fixing {FIXING_DEVICE}.\On to question 4.")
+        print("Correct! You now have (a) {repair_progress} to start continue {FIXING_DEVICE}.\On to question 4.")
 
     question_4: input = str("Answering question for: \unicode.\The condition of an if statement or while loop should always be a bool expression. Please type either True or False.\ ")
     while question_4 != "True":
@@ -44,7 +44,7 @@ def repairing_in_progress(str) -> str:
         playing_points += 1
         print(f"You now have {playing_points}/10 points.")
         repair_progress += "\unicode"
-        print("Correct! You now have (a) {repair_progress} to start fixing {FIXING_DEVICE}.\On to question 5.")
+        print("Correct! You now have (a) {repair_progress} to start continue {FIXING_DEVICE}.\On to question 5.")
 
     question_5: str = input("Answering question for: \unicode.\Evaluate the following expression: True and False or False and not False. Please type either True or False.\ ")
     while question_5 != "False":
@@ -73,7 +73,9 @@ def repairing_in_progress(str) -> str:
         repair_progress += "\unicode"
         print("Correct! You now have (a) {repair_progress} to start fixing {FIXING_DEVICE}.\On to question 6.")
 
-    question_8: str = input()
+    question_8: str = input("Answering question for: \unicode.\"
+
+
 def greet() -> None:
     """Introducing the player to the game."""
     global player_name
