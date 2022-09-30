@@ -3,7 +3,7 @@
 __author__ = "730545277"
 
 from random import randint 
-points: int
+points: int = 0
 FIXING_DEVICE: str = "\U0001F4BB"
 player: str = "name"
 playing_turns: int = 0
@@ -11,6 +11,7 @@ playing_turns: int = 0
 
 def all_or_nothing(risky_points: int) -> int:
     """Allowing the player to risk all of their money by playing the lottery."""
+    global points 
     wizard_names: list[str] = ["Kris", "Kevin", "Ramsees"]
     wizard_index: int = randint(0, 2)
     gambling_computer: int = randint(0, 2)
@@ -19,7 +20,7 @@ def all_or_nothing(risky_points: int) -> int:
         risky_points -= risky_points 
         print(f"Oh no, {wizard_names[wizard_index]} made you lose all of your money and now you are still in debt to your UNC.")
     if gambling_computer == 1:
-        risky_points += 10,0000
+        risky_points += 100000
         print(f"Wow, {wizard_names[wizard_index]} thought the money would be helpful to pay off your UNC tuition debt.")
     if gambling_computer == 2:
         risky_points **= 10
@@ -34,36 +35,47 @@ def customer_checking(points: int) -> int:
     customer_index: int = randint(0, 4)
     customer_rating: int = randint(1, 5)
     turn_number: int = 0 
-    while customer_rating != 5 and turn_number < 3:
+    while customer_rating < 4 and turn_number < 3:
         if customer_rating == 1:
             points -= 10
             print(f"{customer_names[customer_index]}\U0001F92C rated your work on {FIXING_DEVICE} 1 star. You have lost all of your money and ended your business: \U0001F4B8{points}")
-            print(f"Here is the customer's comment: \U0001F4AC Your work is complete #$%! but pass the {FIXING_DEVICE} to the next customer.")
+            print(f"Here is the customer's comment: \U0001F4AC Your work is complete #$%!.")
+            if turn_number < 3: 
+                print(f"Pass the {FIXING_DEVICE} to the next customer for their rating.")
+            if turn_number != 3:
+                points += 10
         if customer_rating == 2:
-            points //= .2
+            points -= 5
             print(f"{customer_names[customer_index]}\U0001FAE0 rated your work on {FIXING_DEVICE} 2 stars. They did not have a pleasent experience but did leave some money: \U0001F4B8{points}")
-            print(f"Here is the customer's comment: \U0001F4AC You must have had a Dook education in computer science but pass the {FIXING_DEVICE} to the next customer.")
+            print(f"Here is the customer's comment: \U0001F4AC You must have had a Dook education in computer science.")
+            if turn_number < 3: 
+                print(f"Pass the {FIXING_DEVICE} to the next customer for their rating.")
+            if turn_number != 3:
+                points += 5
         if customer_rating == 3:
             points += 34
             print(f"{customer_names[customer_index]}\U0001F636 rated your work on {FIXING_DEVICE} 3 stars. They had a mediocre experience and left a surprise tip: \U0001F4B8{points}")
-            print(f"Here is the customer's comment: \U0001F4AC You must have an NC Stink education in computer science but pass the {FIXING_DEVICE} to the next customer.")
+            print(f"Here is the customer's comment: \U0001F4AC You must have an NC Stink education in computer science.") 
+            if turn_number < 3: 
+                print(f"Pass the {FIXING_DEVICE} to the next customer for their rating.")
+            if turn_number != 3:
+                points -= 34
+        if turn_number < 3:
+            print(f"Maybe another customer may pick up this {FIXING_DEVICE} instead of the previous customer until 3 customers have rated your work.")
+        turn_number += 1 
+        input("Press enter.")
+        customer_index = randint(0, 4)
+        customer_rating = randint(1,5)
         if customer_rating == 4:
             points *= 7
             print(f"{customer_names[customer_index]}\U0001F609 rated your work on {FIXING_DEVICE} 4 stars. They had a great experience and provided you with a fat tip: \U0001F4B8{points}")
-            print(f"Here is the customer's comment: \U0001F4AC This worker must have attended the computer science program at UNC but may have slept in some of the lectures.\n Pass the {FIXING_DEVICE} to the next customer.")
-        print(f"Maybe another customer may pick up this {FIXING_DEVICE} instead of the previous customer until 3 customers have rated your work.")
-        input("Press enter.")
-        points = points
-        customer_index = randint(0, 4)
-        customer_rating = randint(1,5)
-        turn_number += 1
+            print(f"Here is the customer's comment: \U0001F4AC This worker must have attended the computer science program at UNC but may have slept in some of the lectures.\nPass the {FIXING_DEVICE} to the next customer.")
         if customer_rating == 5:
             points **= 3
             print(f"{customer_names[customer_index]}\U0001F911 rated your work on {FIXING_DEVICE} 5 stars. They had a terrific experience and wish you retirement: \U0001F4B8{points}")
             print(f"Here is the customer's comment: \U0001F4AC ""I can definitely tell you were taught by Kris Jordan in the comptuer science program at UNC-CH.\nTake my social security nunmber: 432-67-925""")
     global playing_turns
     playing_turns = 1
-    main()
     return points 
 
 
@@ -184,12 +196,11 @@ def repairing_in_progress(points: int) -> str:
 
     print(f"The {FIXING_DEVICE} is now completed. The customer\U0001F468\U0001F469 will now come back to recieve their laptop and rate your work.\n{player}, please be prepapred to serve the {FIXING_DEVICE} to the customer.\nLet's move onto the next step, your shift is almost over.\n")
     input("Press enter.")
-    global points
     customer_checking(points)
     return points
 
 
-def greet() -> None:
+def greet(points: int) -> int:
     """Introducing the player to the game."""
     global player
     player = input("What is your name? ")
@@ -201,31 +212,30 @@ def greet() -> None:
     input("Press enter.\n")
     print(f"This is the device you will be fixing: {FIXING_DEVICE}\U0001FAAB , a broken computer.")
     input("Press enter when you are ready to start.\n")
+    return points 
 
 
 def main() -> None:
     """Moving the player ownwards."""
     global playing_turns
-    if playing_turns == 0:
-        global points
+    global points
+    while playing_turns == 0:
         points = 0
-        greet() 
-        global points
-        repairing_in_progress(points)
-        global points
-        customer_checking(points)
-        playing_turns += 1
-    else: 
+        points = greet(points) 
+        points = repairing_in_progress(points)
+        points = customer_checking(points)
+        #playing_turns += 1
+        main()
+    if playing_turns == 1:
         print(f"So far, here are your points: {points}")
         game_choice: str = input("Would you like to quit the game, risk your money, or redo the game?\nPlease type 1 to quit, 2 to continue, 3 to redo the game.\nChoosing to risk you money allows the computer to determine what the machine should do based on the amount of money you have provided.\n")
         if game_choice == "1":
             print(f"Thank you for playing, here are your total number of points: {points}")
         if game_choice == "2":
-            print("Now that you have earned your money based on you work, you now will go gamnle your money.")
+            print("Now that you have earned your money based on you work, you now will go gamble your money.")
             risky_points: int = input("How many of your points gathered so far would you like to risk?\n")
             all_or_nothing(risky_points)
         if game_choice == "3":
-            global points
             points = 0
             repairing_in_progress(points)
 
