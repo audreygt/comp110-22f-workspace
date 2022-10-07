@@ -79,7 +79,7 @@ def customer_checking(points: int) -> int:
     return points 
 
 
-def repairing_in_progress(points: int) -> str:
+def repairing_in_progress(points: int) -> None:
     """Asking the players question to recieve tools and accessories."""
     CORRECT: str = "\U00002705"
     INCORRECT: str = "\U0001F6AB"
@@ -197,7 +197,6 @@ def repairing_in_progress(points: int) -> str:
     print(f"The {FIXING_DEVICE} is now completed. The customer\U0001F468\U0001F469 will now come back to recieve their laptop and rate your work.\n{player}, please be prepapred to serve the {FIXING_DEVICE} to the customer.\nLet's move onto the next step, your shift is almost over.\n")
     input("Press enter.")
     customer_checking(points)
-    return points
 
 
 def greet() -> None:
