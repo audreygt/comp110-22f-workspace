@@ -2,7 +2,7 @@
 
 __author__ = "730545277"
 
-from dictionaries import invert, favorite_color, count
+from dictionary import invert, favorite_color, count
 
 
 def test_invert() -> None:
@@ -20,17 +20,17 @@ def test_invert_1() -> None:
 
 
 def test_invert_2() -> None:
-    """Testing test invert given same keys."""
+    """Testing test invert given no keys."""
     # Edge case 
-    dict_input: dict[str, str] = {"comp": "sci", "unc": "sci", "audrey": "thomas", "ramsees": "jr"}
-    assert invert(dict_input) == KeyError("Duplicate keys present.")
-    
+    dict_input: dict[str, str] = {}
+    assert invert(dict_input) == {}
 
-def test_favorite_color() -> None:
+
+def test_favorite_color_1() -> None:
     """Testing test favorite colors with correct dictionary."""
-    # Use case
-    color_input: dict[str, str] = {"audrey": "purple", "me": "blue", "you": "green", "yeet": "blue"}
-    assert favorite_color(color_input) == "blue"
+    # Edge case
+    color_input: dict[str, str] = {"audrey": "purple", "steve": "blue", "you": "green", "yeet": "blue"}
+    assert favorite_color(color_input) == 'blue'
 
 
 def test_favorite_color_2() -> None: 
@@ -50,10 +50,19 @@ def test_favorite_color_3() -> None:
 def test_count_1() -> None:
     """Testing presence of words using word count."""
     # Use case 
-    word_input: list[str] = ["yes", "yes", "yes", "marshmallow", "halo", "lovely"]
-    assert count(word_input) == {"yes": 3, "marshmallow" : 1, "halo": 1, "lovely": 1}
+    word_input: list[str] = ["xbox", "xbox", "xbox", "warzone", "halo", "dmr"]
+    assert count(word_input) == {"xbox": 3, "warzone": 1, "halo": 1, "dmr": 1}
 
 
 def test_count_2() -> None:
-    """Testing count"""
-    
+    """Testing presence of words using word count."""
+    # Use case 
+    word_input: list[str] = ["xbox", "xbox", "warzone", "warzone", "halo", "halo"]
+    assert count(word_input) == {"xbox": 2, "warzone": 2, "halo": 2}
+
+
+def test_count_3() -> None:
+    """Testing presence of words using empty list."""
+    # Edge case 
+    word_input: list[str] = list()
+    assert count(word_input) == {}

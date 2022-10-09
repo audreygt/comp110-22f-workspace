@@ -35,7 +35,7 @@ def count(word_input: list[str]) -> dict[str, int]:
     word_dict: dict[str, int] = {}
     index: int = 0
     for words in word_input:
-        if word_input[0] in word_dict:
+        if word_input[index] in word_dict:
             word_dict[words] += 1
         else:
             word_dict[words] = 1
