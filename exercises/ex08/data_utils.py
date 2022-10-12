@@ -1,5 +1,11 @@
 """Dictionary related utility functions."""
 
-__author__ = ""
+__author__ = "730545277"
 
-# Define your functions below
+
+from csv import DictReader 
+
+
+def read_csv_rows(filename:str) -> list[dict[str, str]]:
+    """Read the rows of a CSV into a table (list of dicts)."""
+    result: list[dict[str, str]] = []
