@@ -13,6 +13,7 @@ def read_csv_rows(filename: str) -> list[dict[str, str]]:
     csv_reader = DictReader(file_handle)
     for row in csv_reader:
         result.append(row)
+    file_handle.close()
     return result 
 
 
@@ -31,5 +32,24 @@ def columnar(rowtable: list[dict[str, str]]) -> dict[str, list[str]]:
     for column in starting_row:
         result[column] = column_values(rowtable, column)
     return result 
+
+
+def head(columntable: dict[str, list[str]], rownumber: int) -> dict[str, list[str]]:
+    i: int = 0 
+    for column in columntable:
+        result: list[dict[str, str]] = list()
+        for row in column:
+            if i < rownumber:
+                result.append(row)
+            i += 1
+    return result
+
+
+def select(columntable: dict[str, list[str]], columnname: list[str]) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+    for items in columnname:
+        result = columntable[items]
+    return result
+
 
 
