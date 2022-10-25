@@ -35,21 +35,23 @@ def columnar(rowtable: list[dict[str, str]]) -> dict[str, list[str]]:
 
 
 def head(columntable: dict[str, list[str]], rownumber: int) -> dict[str, list[str]]:
-    i: int = 0 
-    for column in columntable:
-        result: list[dict[str, str]] = list()
-        for row in column:
-            if i < rownumber:
-                result.append(row)
-            i += 1
+    result: dict[str, list[int]] = {} 
+    for column in columntable: 
+        new_list: list[str] = list()
+        for item in range(rownumber):
+            new_list.append(columntable[column][item])
+            result[column] = new_list
     return result
 
 
-def select(columntable: dict[str, list[str]], columnname: list[str]) -> dict[str, list[str]]:
-    result: dict[str, list[str]] = {}
-    for items in columnname:
-        result = columntable[items]
-    return result
-
-
-
+def count(word_input: list[str]) -> dict[str, int]:
+    """Tracking the presence of words in a list."""
+    word_dict: dict[str, int] = {}
+    index: int = 0
+    for words in word_input:
+        if word_input[index] in word_dict:
+            word_dict[words] += 1
+        else:
+            word_dict[words] = 1
+        index += 1
+    return word_dict 
