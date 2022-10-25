@@ -40,7 +40,8 @@ def head(columntable: dict[str, list[str]], rownumber: int) -> dict[str, list[st
     for column in columntable: 
         new_list: list[str] = []
         for item in range(0, rownumber):
-            new_list.append(columntable[column][item])
+            if len(new_list) < len(columntable[column]):
+                new_list.append(columntable[column][item])
         result[column] = new_list
     return result
 
@@ -49,10 +50,8 @@ def select(columntable: dict[str, list[str]], list_1: list[str]) -> dict[str, li
     """Producing a dictionary with keys matching list of strings."""
     result: dict[str, list[str]] = {}
     for columns in list_1:
-        i: int = 0 
-        if list_1[i] == columntable[columns]:
+        if columns in columntable:
             result[columns] = columntable[columns]
-        i += 1
     return result 
 
 
@@ -71,12 +70,10 @@ def count(list_1: list[str]) -> dict[str, int]:
     """Tracking the presence of words in a list."""
     result: dict[str, int] = {}
     index: int = 0
-    for words in result:
+    for words in list_1:
         if list_1[index] in result:
             result[words] += 1
         else:
             result[words] = 1
         index += 1
     return result
-
-    
