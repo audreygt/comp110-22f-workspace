@@ -35,23 +35,48 @@ def columnar(rowtable: list[dict[str, str]]) -> dict[str, list[str]]:
 
 
 def head(columntable: dict[str, list[str]], rownumber: int) -> dict[str, list[str]]:
-    result: dict[str, list[int]] = {} 
+    """Listing a few of the column names."""
+    result: dict[str, list[str]] = {} 
     for column in columntable: 
-        new_list: list[str] = list()
-        for item in range(rownumber):
+        new_list: list[str] = []
+        for item in range(0, rownumber):
             new_list.append(columntable[column][item])
-            result[column] = new_list
+        result[column] = new_list
     return result
 
 
-def count(word_input: list[str]) -> dict[str, int]:
+def select(columntable: dict[str, list[str]], list_1: list[str]) -> dict[str, list[str]]:
+    """Producing a dictionary with keys matching list of strings."""
+    result: dict[str, list[str]] = {}
+    for columns in list_1:
+        i: int = 0 
+        if list_1[i] == columntable[columns]:
+            result[columns] = columntable[columns]
+        i += 1
+    return result 
+
+
+def concat(columntable_1: dict[str, list[str]], columntable_2: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Producing a new dictionary consisting of both given dictionaries."""
+    result: dict[str, list[str]] = {}
+    for columns in columntable_1:
+        result[columns] = columntable_1[columns]
+    for columns in columntable_2:
+        if columntable_2[columns] == result[columns]:
+            result[columns] = columntable_2[columns]
+    return result 
+
+
+def count(list_1: list[str]) -> dict[str, int]:
     """Tracking the presence of words in a list."""
-    word_dict: dict[str, int] = {}
+    result: dict[str, int] = {}
     index: int = 0
-    for words in word_input:
-        if word_input[index] in word_dict:
-            word_dict[words] += 1
+    for words in result:
+        if list_1[index] in result:
+            result[words] += 1
         else:
-            word_dict[words] = 1
+            result[words] = 1
         index += 1
-    return word_dict 
+    return result
+
+    
