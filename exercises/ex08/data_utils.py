@@ -61,7 +61,9 @@ def concat(columntable_1: dict[str, list[str]], columntable_2: dict[str, list[st
     for columns in columntable_1:
         result[columns] = columntable_1[columns]
     for columns in columntable_2:
-        if columntable_2[columns] == result[columns]:
+        if columns in result:
+            result[columns] += columntable_2[columns]
+        else:
             result[columns] = columntable_2[columns]
     return result 
 
