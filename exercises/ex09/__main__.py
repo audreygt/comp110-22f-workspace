@@ -9,7 +9,9 @@ def main() -> None:
     """Entrypoint of simulation."""
     model: Model = Model(constants.CELL_COUNT, constants.CELL_SPEED)
     view_controller: ViewController = ViewController(model)
+    # coding to continuously update
     view_controller.start_simulation()
+    # keeping track of location, state, speed, and count of cells 
 
 
 if __name__ == "__main__":
