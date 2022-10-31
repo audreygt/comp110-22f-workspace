@@ -37,14 +37,13 @@ class Cell:
         self.location = location
         self.direction = direction
 
-    # Part 1) Define a method named `tick` with no parameters.
-    # Its purpose is to reassign the object's location attribute
-    # the result of adding the self object's location with its
-    # direction. Hint: Look at the add method.
+    def tick(self) -> None:
+        """Reassign location attribute adding location with direction."""
+        self.location = self.location.add(self.direction)
         
     def color(self) -> str:
         """Return the color representation of a cell."""
-        return "black"
+        return "purple"
 
 
 class Model:
@@ -67,8 +66,7 @@ class Model:
         self.time += 1
         for cell in self.population:
             cell.tick()
-        print(self.time)
-
+            self.enforce_bounds(cell) 
 
     def random_location(self) -> Point:
         """Generate a random location."""
@@ -85,7 +83,18 @@ class Model:
 
     def enforce_bounds(self, cell: Cell) -> None:
         """Cause a cell to 'bounce' if it goes out of bounds."""
-        ...
+        if cell.location.x > constants.MAX_X:
+            cell.location.x = constants.MAX_X
+            cell.direction.x *= -1.0
+        if cell.location.y > constants.MAX_Y:
+            cell.location.y = constants.MAX_Y
+            cell.direction.y *= -1.0
+        if cell.location.x < constants.MIN_X:
+            cell.location.x = constants.MIN_X
+            cell.direction.x *= -1.0
+        if cell.location.y < constants.MIN_Y:
+            cell.location.y = constants.MIN_Y
+            cell.direction.y *= -1.0
 
     def is_complete(self) -> bool:
         """Method to indicate when the simulation is complete."""
