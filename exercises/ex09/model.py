@@ -6,7 +6,7 @@ from exercises.ex09 import constants
 from math import sin, cos, pi
 
 
-__author__ = ""  # TODO
+__author__ = "730545277"
 
 
 class Point:
@@ -25,12 +25,14 @@ class Point:
         y: float = self.y + other.y
         return Point(x, y)
 
+    def distance(self, other: Point) -> float:
+        length: 
 
 class Cell:
     """An individual subject in the simulation."""
     location: Point
     direction: Point
-    sickness: int = 0
+    sickness: int = constants.VULNERABLE
 
     def __init__(self, location: Point, direction: Point):
         """Construct a cell with its location and direction."""
@@ -43,8 +45,31 @@ class Cell:
         
     def color(self) -> str:
         """Return the color representation of a cell."""
-        return "purple"
+        if self.is_vulnerable() == True:
+            return "gray" 
+        elif self.is_infected() == True:
+            return "dark violet"
+        
+    def contract_disease(self) -> None:
+        """Changing cell from vulnerable to infected."""
+        self.sickness = constants.INFECTED 
 
+    def is_vulnerable(self) -> bool:
+        """Returning true or false based on state."""
+      
+        if self.sickness == constants.VULNERABLE:
+            return True
+        else:
+            return False
+
+    def is_infected(self) -> bool:
+        """Returning true or false based on state."""
+        state: bool
+        if self.sickness == constants.INFECTED:
+            state = True 
+        else: 
+            state = False 
+        return state 
 
 class Model:
     """The state of the simulation."""
@@ -52,14 +77,17 @@ class Model:
     population: list[Cell]
     time: int = 0
 
-    def __init__(self, cells: int, speed: float):
+    def __init__(self, cells: int, speed: float, number: int):
         """Initialize the cells with random locations and directions."""
         self.population = []
-        for _ in range(cells):
-            start_location: Point = self.random_location()
-            start_direction: Point = self.random_direction(speed)
-            cell: Cell = Cell(start_location, start_direction)
-            self.population.append(cell)
+        if number == cells or number <= 0:
+            raise ValueError("Some cells must begin infected.")
+        else:
+            for _ in range(cells):
+                start_location: Point = self.random_location()
+                start_direction: Point = self.random_direction(speed)
+                cell: Cell = Cell(start_location, start_direction)
+                self.population.append(cell)
         
     def tick(self) -> None:
         """Update the state of the simulation by one time step."""

@@ -10,7 +10,10 @@ MAX_Y: float = BOUNDS_HEIGHT / 2
 MIN_Y: float = -MAX_Y
 VIEW_HEIGHT: int = BOUNDS_HEIGHT + 20
 
+
 CELL_RADIUS: int = 15
-CELL_COUNT: int = 10
+CELL_COUNT: int = 25
 CELL_SPEED: float = 5.0
-# constants file 
+VULNERABLE: int = 0 
+INFECTED: int = 1
+ICELLS: int = 2
