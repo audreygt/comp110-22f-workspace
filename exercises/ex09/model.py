@@ -4,6 +4,7 @@ from __future__ import annotations
 from random import random
 from exercises.ex09 import constants
 from math import sin, cos, pi
+from math import sqrt 
 
 
 __author__ = "730545277"
@@ -24,9 +25,6 @@ class Point:
         x: float = self.x + other.x
         y: float = self.y + other.y
         return Point(x, y)
-
-    def distance(self, other: Point) -> float:
-        length: 
 
 class Cell:
     """An individual subject in the simulation."""
@@ -70,6 +68,25 @@ class Cell:
         else: 
             state = False 
         return state 
+
+    def is_distance(self, location: Point) -> float:
+        """"Returning the distance between 2 cells."""
+        x: int = self.x - location.x
+        y: int = self.y - location.y
+        distance: float = sqrt((x**2)+(y**2))
+        return distance 
+
+    def contact_with(self, another: Cell) -> None:
+        if self.is_vulnerable() and another.is_infected():
+            self.contract_disease()
+
+    def immunize(self) -> None:
+        self.sickness = constants.IMMUNE
+
+    def is_immune(self) -> bool:
+        status: bool 
+        if self.sickness == constants.IMMUNE:
+            return True 
 
 class Model:
     """The state of the simulation."""
@@ -123,6 +140,8 @@ class Model:
         if cell.location.y < constants.MIN_Y:
             cell.location.y = constants.MIN_Y
             cell.direction.y *= -1.0
+
+    def check_contacts(self)
 
     def is_complete(self) -> bool:
         """Method to indicate when the simulation is complete."""
