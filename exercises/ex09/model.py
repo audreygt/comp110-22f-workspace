@@ -40,6 +40,11 @@ class Cell:
     def tick(self) -> None:
         """Reassign location attribute adding location with direction."""
         self.location = self.location.add(self.direction)
+        if self.sickness == constants.INFECTED:
+            self.sickess = self.sickness + 1
+        if self.sickness > constants.RECOVERY_PERIOD:
+            self.sickness = constants.IMMUNE
+
         
     def color(self) -> str:
         """Return the color representation of a cell."""
@@ -47,6 +52,8 @@ class Cell:
             return "gray" 
         elif self.is_infected() == True:
             return "dark violet"
+        elif self.is_immune() == True:
+            return "light blue" 
         
     def contract_disease(self) -> None:
         """Changing cell from vulnerable to infected."""
@@ -63,7 +70,7 @@ class Cell:
     def is_infected(self) -> bool:
         """Returning true or false based on state."""
         state: bool
-        if self.sickness == constants.INFECTED:
+        if self.sickness >= constants.INFECTED:
             state = True 
         else: 
             state = False 
@@ -84,7 +91,6 @@ class Cell:
         self.sickness = constants.IMMUNE
 
     def is_immune(self) -> bool:
-        status: bool 
         if self.sickness == constants.IMMUNE:
             return True 
 
@@ -94,9 +100,10 @@ class Model:
     population: list[Cell]
     time: int = 0
 
-    def __init__(self, cells: int, speed: float, number: int):
+    def __init__(self, cells: int, speed: float, number: int, value: int):
         """Initialize the cells with random locations and directions."""
         self.population = []
+        default_value: int = 0 
         if number == cells or number <= 0:
             raise ValueError("Some cells must begin infected.")
         else:
@@ -112,6 +119,7 @@ class Model:
         for cell in self.population:
             cell.tick()
             self.enforce_bounds(cell) 
+        self.check_contacts()
 
     def random_location(self) -> Point:
         """Generate a random location."""
@@ -141,8 +149,15 @@ class Model:
             cell.location.y = constants.MIN_Y
             cell.direction.y *= -1.0
 
-    def check_contacts(self)
+    def check_contacts(self) -> None: 
+        for self in self.population: 
+            for cell_1 in population:
+                if Cell.is_distance(self, cell_1.location) < constants.CELL_RADIUS:
+                    Cell.contact_with(self, cell_1)
 
     def is_complete(self) -> bool:
         """Method to indicate when the simulation is complete."""
-        return False
+        if Cell.sickness == constants.VULNERABLE or Cell.sickness == constants.IMMUNE:
+            return True 
+        else:
+            return False
