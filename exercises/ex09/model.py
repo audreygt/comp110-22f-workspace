@@ -26,6 +26,13 @@ class Point:
         y: float = self.y + other.y
         return Point(x, y)
 
+    def distance(self, location: Point) -> float:
+        """"Returning the distance between 2 cells."""
+        x: float = self.x - location.x
+        y: float = self.y - location.y
+        distance: float = sqrt((x**2)+(y**2))
+        return distance 
+
 class Cell:
     """An individual subject in the simulation."""
     location: Point
@@ -45,15 +52,13 @@ class Cell:
         if self.sickness > constants.RECOVERY_PERIOD:
             self.sickness = constants.IMMUNE
 
-        
     def color(self) -> str:
         """Return the color representation of a cell."""
         if self.is_vulnerable() == True:
             return "gray" 
-        elif self.is_infected() == True:
+        if self.is_infected() == True:
             return "dark violet"
-        elif self.is_immune() == True:
-            return "light blue" 
+        return "light blue" 
         
     def contract_disease(self) -> None:
         """Changing cell from vulnerable to infected."""
@@ -76,13 +81,6 @@ class Cell:
             state = False 
         return state 
 
-    def is_distance(self, location: Point) -> float:
-        """"Returning the distance between 2 cells."""
-        x: int = self.x - location.x
-        y: int = self.y - location.y
-        distance: float = sqrt((x**2)+(y**2))
-        return distance 
-
     def contact_with(self, another: Cell) -> None:
         if self.is_vulnerable() and another.is_infected():
             self.contract_disease()
@@ -93,6 +91,7 @@ class Cell:
     def is_immune(self) -> bool:
         if self.sickness == constants.IMMUNE:
             return True 
+        return False 
 
 class Model:
     """The state of the simulation."""
@@ -150,10 +149,10 @@ class Model:
             cell.direction.y *= -1.0
 
     def check_contacts(self) -> None: 
-        for self in self.population: 
-            for cell_1 in population:
-                if Cell.is_distance(self, cell_1.location) < constants.CELL_RADIUS:
-                    Cell.contact_with(self, cell_1)
+        for cell_number in range(0, len(self.population)):
+            for cell_1 in range(cell_number + 1, len(self.population)):
+                if self.population[cell_number].location.distance(self.population[cell_1].location) < constants.CELL_RADIUS:
+                    self.population[cell_number].contact_with(self.population[cell_1])
 
     def is_complete(self) -> bool:
         """Method to indicate when the simulation is complete."""
