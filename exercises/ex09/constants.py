@@ -14,8 +14,11 @@ VIEW_HEIGHT: int = BOUNDS_HEIGHT + 20
 CELL_RADIUS: int = 15
 CELL_COUNT: int = 25
 CELL_SPEED: float = 5.0
+
 VULNERABLE: int = 0 
 INFECTED: int = 1
+IMMUNE: int = -1
+
 ICELLS: int = 2
-IMMUNE: int = 1
+IMMUNE_CELLS: int = 1
 RECOVERY_PERIOD: int = 90
