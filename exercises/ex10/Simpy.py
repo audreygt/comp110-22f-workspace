@@ -59,6 +59,61 @@ class Simpy:
                 result += (self.values[i] ** choice)
         return result
 
+    def __eq__(self, choice: Union[Simpy, float]) -> list[bool]:
+        result: list[bool] = []
+        if isinstance(choice, Simpy):
+            assert len(self.values) == len(choice.values)
+            for i in range(len(self.values)):
+                if self.values[i] == choice.values[i]:
+                    result.append(True)
+                else: 
+                    result.append(False)
+        if isinstance(choice, float):
+            for i in range(len(self.values)):
+                if self.values[i] == choice:
+                    result.append(True)
+                else:
+                    result.append(False)
+        return result 
+
+    def __gt__(self, choice: Union[Simpy, float]) -> list[bool]:
+        result: list[bool] = []
+        if isinstance(choice, Simpy):
+            assert len(self.values) == len(choice.values)
+            for i in range(len(self.values)):
+                if self.values[i] > choice.values[i]:
+                    result.append(True)
+                else: 
+                    result.append(False)
+        if isinstance(choice, float):
+            for i in range(len(self.values)):
+                if self.values[i] > choice:
+                    result.append(True)
+                else:
+                    result.append(False)
+        return result 
+
+    def __getititem__(self, choice: Union[int, list[bool]]) -> float:
+        result: float = 0.0
+        if isinstance(choice, int):
+            if choice < len(self.values):
+                result = self.values[choice]
+        if isinstance(choice, list[bool]):
+            for i in choice:
+                if self.values[i] == choice[True]:
+                    result += (self.values[i])
+        return result 
+        
+      
+        
+
+
+
+
+
+            
+    
+
 
 
 
