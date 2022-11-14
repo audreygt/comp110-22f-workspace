@@ -93,15 +93,14 @@ class Simpy:
                     result.append(False)
         return result 
 
-    def __getititem__(self, choice: Union[int, list[bool]]) -> Union[float, Simpy]:
+    def __getitem__(self, choice: Union[int, list[bool]]) -> Union[float, Simpy]:
         if isinstance(choice, int):
-            numbers: list[float] = list(self.values)
-            if choice < len(numbers):
-                return(numbers[choice])
-        else:
+            if choice < len(self.values):
+                return (self.values[choice])
+            
+        elif isinstance(choice, Simpy): 
             result: list[float] = []
             for i in choice:
-                if self.values[i] == choice[True]:
+                if choice[i] == True:
                     result.append(self.values[i])
-                    return Simpy(result)
-       
+            return Simpy(result)
