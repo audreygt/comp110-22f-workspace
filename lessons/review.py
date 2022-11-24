@@ -59,16 +59,15 @@ class ChristmasTreeFarm:
         return ChristmasTreeFarm(new_farm)
 
 class Course: 
-        name: str
-        level: int 
-        prerequisites: list[str]
+    name: str
+    level: int 
+    prerequisites: list[str]
 
     def __init__(self, names, levels, prerequisites):
         self.name = names
         self.level = levels
         self.prerequistes = prerequisites 
 
-    
     def find_courses(list_courses: list[Courses], prereq: list[str]) -> list[str]: 
         advanced_classes: list[str] = []
         for i in list_courses:
